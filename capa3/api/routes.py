@@ -14,8 +14,10 @@ from datetime import datetime, timezone
 
 import numpy as np
 from flask import Blueprint, request, jsonify, current_app
+import jwt
+from datetime import timedelta
 
-from capa3.config import Decision, EventType, MAX_CONTENT_LENGTH
+from capa3.config import Decision, EventType, MAX_CONTENT_LENGTH, JWT_SECRET_KEY, JWT_ALGORITHM, JWT_EXPIRATION_HOURS
 from capa3.persistence.hmac_utils import calcular_hmac
 from capa3.persistence.models_db import LogAcceso, Sesion, Usuario
 from capa3.persistence.database import get_session
@@ -238,6 +240,104 @@ def health():
         "models_loaded": engine is not None,
         "faiss_embeddings": faiss_total,
     })
+
+
+# ==============================================================================
+# Endpoints de Autenticación (JWT y Mosquitto) — Capa 2
+# ==============================================================================
+
+@api_bp.route("/auth/token", methods=["POST"])
+def generate_token():
+    """
+    Genera un token JWT para un nodo (Capa 1) o cliente dashboard (Capa 4).
+    En producción esto requeriría autenticación previa (ej. clave de API, admin login).
+    """
+    node_id = request.json.get("node_id") if request.is_json else request.form.get("node_id")
+    if not node_id:
+        return jsonify({"error": "node_id requerido"}), 400
+
+    payload = {
+        "sub": node_id,
+        "role": "node" if node_id.startswith("ESP32") else "dashboard",
+        "iat": datetime.now(timezone.utc),
+        "exp": datetime.now(timezone.utc) + timedelta(hours=JWT_EXPIRATION_HOURS)
+    }
+    
+    token = jwt.encode(payload, JWT_SECRET_KEY, algorithm=JWT_ALGORITHM)
+    return jsonify({"token": token, "node_id": node_id, "expires_in_hours": JWT_EXPIRATION_HOURS})
+
+
+@api_bp.route("/auth/mqtt", methods=["GET", "POST"])
+def mqtt_auth():
+    """
+    Validación de usuario/password para Mosquitto go-auth.
+    El cliente MQTT envía username (node_id) y password (token JWT).
+    """
+    # mosquitto-go-auth envía JSON en POST por defecto
+    data = request.json if request.is_json else request.form
+    username = data.get("username")
+    password = data.get("password")  # Esto debe ser el JWT
+
+    if not username or not password:
+        # Permitir un superusuario interno de la capa 3 (el propio backend Python)
+        if username == "capa3_motor_ia" and password == "internal_backend_secret":
+            return "OK", 200
+        return "Missing credentials", 401
+
+    try:
+        decoded = jwt.decode(password, JWT_SECRET_KEY, algorithms=[JWT_ALGORITHM])
+        if decoded.get("sub") == username:
+            return "OK", 200
+        else:
+            return "Token subject mismatch", 401
+    except jwt.ExpiredSignatureError:
+        return "Token expired", 401
+    except jwt.InvalidTokenError:
+        return "Invalid token", 401
+
+
+@api_bp.route("/auth/mqtt/superuser", methods=["GET", "POST"])
+def mqtt_superuser():
+    """Valida si un usuario de MQTT es superusuario."""
+    data = request.json if request.is_json else request.form
+    username = data.get("username")
+    
+    if username == "capa3_motor_ia":
+        return "OK", 200
+    
+    # dashboard admin (si quisiéramos)
+    if username == "dashboard_admin":
+        return "OK", 200
+        
+    return "Not superuser", 401
+
+
+@api_bp.route("/auth/mqtt/acl", methods=["GET", "POST"])
+def mqtt_acl():
+    """
+    Control de acceso a nivel de topic (ACL) para Mosquitto.
+    """
+    data = request.json if request.is_json else request.form
+    username = data.get("username")
+    topic = data.get("topic")
+    acc = str(data.get("acc")) # 1=sub, 2=pub, 3=both
+    
+    # El superusuario (backend Python) y Dashboard admin tienen acceso a todo
+    if username in ["capa3_motor_ia", "dashboard_admin"]:
+        return "OK", 200
+        
+    # Validaciones para nodos (ESP32)
+    if username and username.startswith("ESP32"):
+        if acc == "2": # Publicación
+            # Los nodos publican en heartbeat y reconnect
+            if topic == f"sistema/nodos/{username}/heartbeat" or topic == f"sistema/nodos/{username}/reconnect":
+                return "OK", 200
+        elif acc == "1": # Suscripción
+            # Los nodos se suscriben a comandos
+            if topic == f"acceso/puerta/{username}/comando":
+                return "OK", 200
+                
+    return "ACL denied", 401
 
 
 def _persist_log(access_decision, node_id: str) -> None:

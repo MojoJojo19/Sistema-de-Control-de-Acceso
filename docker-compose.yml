@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  api_gateway:
+    image: nginx:latest
+    container_name: capa2_nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./capa2/nginx/config/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./capa2/nginx/certs:/etc/nginx/certs:ro
+    restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  mqtt_broker:
+    # Use iegomez/mosquitto-go-auth for built-in HTTP auth support
+    image: iegomez/mosquitto-go-auth:latest
+    container_name: capa2_mosquitto
+    ports:
+      - "1883:1883"
+      - "8883:8883"
+      - "9001:9001"
+      - "9002:9002"
+    volumes:
+      - ./capa2/mosquitto/config/mosquitto.conf:/etc/mosquitto/mosquitto.conf:ro
+      - ./capa2/mosquitto/certs:/mosquitto/certs:ro
+      - mosquitto_data:/mosquitto/data
+    restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  mosquitto_data:

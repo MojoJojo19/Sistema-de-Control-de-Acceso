@@ -40,6 +40,17 @@ HMAC_SECRET_KEY = os.environ.get(
 ).encode("utf-8")
 
 # =============================================================================
+# JWT Autenticación — §6.2 Autenticación de Nodos
+# =============================================================================
+JWT_SECRET_KEY = os.environ.get(
+    "JWT_SECRET_KEY",
+    "capa3_jwt_secret_key_very_secure_123"
+)
+JWT_ALGORITHM = "HS256"
+JWT_EXPIRATION_HOURS = 24
+
+
+# =============================================================================
 # Umbrales del pipeline — §6.3.3.1 Cadena Fail-Fast
 # =============================================================================
 
