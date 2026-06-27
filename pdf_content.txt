@@ -1,0 +1,957 @@
+﻿Total de paginas: 20
+
+=== PAGINA 1 ===
+UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS
+ÔÇ£FACULTAD DE INGENIER├ìA DE SISTEMAS E INFORM├üTICAÔÇØ
+ESCUELA PROFESIONAL DE INGENIER├ìA DE SISTEMAS
+PROYECTO FIN DE CURSO
+SISTEMA DE CONTROL DE ACCESO INTELIGENTE
+CURSO:
+INTERNET DE LAS COSAS
+DOCENTE:
+FERM├ìN PEREZ, FELIX ARMANDO
+INTEGRANTES:
+CHUNGA CHEVEZ, AXEL JOSU├ë
+MOYA LAUREANO, JUSSEL ENRIQUE
+VASQUEZ PELAEZ, FRANCESS JEICOLL
+2025
+
+=== PAGINA 2 ===
+Contenido
+1. INTRODUCCI├ôN ............................................................................................................... 3
+2. RESUMEN ........................................................................................................................... 3
+3. PROBLEM├üTICA .............................................................................................................. 4
+4. SOLUCI├ôN PROPUESTA ................................................................................................ 4
+5. OBJETIVOS ........................................................................................................................ 5
+5.1. OBJETIVOS GENERALES: .................................................................................... 5
+5.2. OBJETIVOS ESPEC├ìFICOS: .................................................................................. 5
+6. ARQUITECTURA POR CAPAS ...................................................................................... 5
+6.1. CAPA DE DISPOSITIVO: ....................................................................................... 5
+6.1.1. SELECCI├ôN DE COMPONENTES ................................................................... 5
+6.1.2. COMPONENTES DE INTEGRACI├ôN Y SOPORTE ..................................... 8
+6.1.3. RESUMEN DE COMPONENTES SELECCIONADOS ................................... 8
+6.1.4. FLUJO OPERATIVO DEL NODO BIOM├ëTRICO ......................................... 9
+6.2. CAPA DE RED: ......................................................................................................... 9
+6.2.1. PROTOCOLOS DE COMUNICACI├ôN: ........................................................... 9
+6.2.2. FLUJO DE COMUNICACI├ôN DEL SISTEMA: ............................................ 10
+6.2.3. CASOS DE USO DE COMUNICACI├ôN: ........................................................ 10
+6.2.4. TIPO DE RED Y CONECTIVIDAD: ............................................................... 10
+6.2.5. TOPOLOG├ìA DE RED: ..................................................................................... 11
+6.2.6. DIAGRAMA DE ARQUITECTURA DE RED: ............................................... 11
+6.2.7. ESCALABILIDAD DEL SISTEMA: ................................................................ 12
+6.2.8. SEGURIDAD EN LA CAPA DE RED: ............................................................. 12
+6.2.9. CALIDAD Y SERVICIO Y FIABILIDAD: ...................................................... 13
+6.2.10. MIDDLEWARE Y PROCESAMIENTO CENTRALIZADO: .................. 13
+6.2.11. VALIDACI├ôN, PRUEBAS Y M├ëTRICAS DE RENDIMIENTO: ........... 13
+6.3. CAPA DE APOYO A SERVICIOS: ...................................................................... 13
+6.3.1. MOTOR DE INTELIGENCIA ARTIFICIAL CENTRALIZADO ................ 13
+6.3.2. RED NEURONAL ÔÇô MODELO DE RECONOCIMIENTO FACIAL .......... 14
+6.3.3. L├ôGICA DE NEGOCIO Y GESTI├ôN DE REGLAS DE ACCESO ............. 14
+6.3.4. PERSISTENCIA DE DATOS RELACIONALES ........................................... 18
+6.4. CAPA DE APLICACI├ôN: ...................................................................................... 18
+
+=== PAGINA 3 ===
+1. INTRODUCCI├ôN
+La gesti├│n de la seguridad f├¡sica en infraestructuras de alto tr├ínsito exige soluciones cada vez
+m├ís robustas y auditables. Tradicionalmente, el control de acceso se ha fundamentado en el
+uso de credenciales tangibles, tales como llaves mec├ínicas o tarjetas de proximidad. Sin
+embargo, estos m├®todos presentan vulnerabilidades estructurales ineludibles: son
+susceptibles a extrav├¡os, clonaci├│n y uso por parte de terceros no autorizados. Adem├ís, al
+operar de manera aislada, carecen de trazabilidad en tiempo real, lo que limita severamente la
+capacidad de respuesta ante incidentes y convierte la administraci├│n de la seguridad en un
+proceso netamente reactivo.
+Para superar estas limitaciones, es imperativo evolucionar hacia arquitecturas tecnol├│gicas
+distribuidas y automatizadas. La convergencia entre dispositivos integrados en el entorno f├¡sico
+y redes de comunicaci├│n de baja latencia permite transformar simples puntos de bloqueo en
+nodos de decisi├│n din├ímicos. Este cambio de paradigma facilita la monitorizaci├│n continua y la
+gesti├│n inteligente de los datos, sentando las bases para ecosistemas de seguridad proactivos,
+altamente eficientes y adaptables a las necesidades operativas de la organizaci├│n. En este
+escenario de transformaci├│n, la visi├│n artificial y el an├ílisis biom├®trico se consolidan como los
+mecanismos de autenticaci├│n m├ís fiables. A diferencia de un objeto f├¡sico que puede ser
+transferido, el rostro humano constituye una credencial biol├│gica intr├¡nseca al individuo. Al
+complementar la captura de im├ígenes con algoritmos de detecci├│n de vitalidad impulsados
+por redes neuronales, se mitiga dr├ísticamente el riesgo de suplantaci├│n de identidad,
+garantizando matem├íticamente que el usuario frente al punto de control es leg├¡timo y no una
+reproducci├│n fotogr├ífica o digital.
+Respondiendo a esta necesidad tecnol├│gica, el presente proyecto desarrolla un "Sistema de
+Control de Acceso Inteligente con Visi├│n Biom├®trica". La soluci├│n se articula sobre un modelo
+de cuatro capas que integra arm├│nicamente hardware y software. Desde microcontroladores y
+sensores que act├║an en el entorno f├¡sico, pasando por protocolos de transmisi├│n cifrada, hasta
+llegar a un servidor centralizado responsable de la inferencia anal├¡tica y la persistencia
+inmutable de los registros de acceso.
+M├ís all├í de la validaci├│n biom├®trica en s├¡, el valor diferencial de esta investigaci├│n reside en su
+dise├▒o arquitect├│nico resiliente. Incorporando principios avanzados de autogesti├│n, el sistema
+posee mecanismos de contingencia local que aseguran la operatividad ininterrumpida de la
+puerta y la protecci├│n de las auditor├¡as, incluso frente a ca├¡das cr├¡ticas de la red. En definitiva,
+este proyecto demuestra de forma pr├íctica c├│mo la ingenier├¡a de sistemas contempor├ínea
+puede orquestar visi├│n por computadora, bases de datos y electr├│nica distribuida para
+construir infraestructuras de seguridad escalables y de nivel corporativo.
+2. RESUMEN
+El presente proyecto aborda la vulnerabilidad inherente de los sistemas de control de acceso
+basados en credenciales f├¡sicas tradicionales mediante el dise├▒o de una soluci├│n integral
+fundamentada en la Internet de las Cosas y la visi├│n artificial. Se propone un sistema
+distribuido de cuatro capas, ideal para la gesti├│n de seguridad en infraestructuras como
+laboratorios universitarios, el cual integra dispositivos de borde equipados con hardware
+ESP32 y una unidad de procesamiento centralizada. Esta unidad emplea modelos de
+inteligencia artificial para ejecutar el reconocimiento facial y la detecci├│n de vivacidad,
+mitigando de forma efectiva los riesgos de suplantaci├│n de identidad. La arquitectura dise├▒ada
+prioriza la resiliencia operativa y la protecci├│n de los datos mediante el uso de redes cifradas,
+
+=== PAGINA 4 ===
+un modelo de comunicaci├│n h├¡brido sustentado en los est├índares HTTP y MQTT, y la
+implementaci├│n de mecanismos de autogesti├│n local bajo el patr├│n de almacenamiento y
+reenv├¡o. Como resultado, la soluci├│n garantiza una autenticaci├│n biom├®trica robusta, una
+trazabilidad auditable en tiempo real y una alta disponibilidad, superando las limitaciones
+estructurales de los sistemas convencionales en infraestructuras de seguridad f├¡sica de alta
+exigencia.
+3. PROBLEM├üTICA
+En el entorno corporativo y acad├®mico, el control perimetral depende mayoritariamente de
+credenciales f├¡sicas, tarjetas RFID, NFC, que autentican la posesi├│n de un objeto, mas no la
+identidad del portador. Esta limitaci├│n expone a las organizaciones a brechas de seguridad
+severas por extrav├¡o o clonaci├│n. Seg├║n Leclerc (2022), estos ataques permiten a actores
+maliciosos vulnerar el sistema sin ser detectados, causando graves da├▒os financieros y fuga de
+informaci├│n. Como consecuencia directa, los sistemas convencionales carecen de trazabilidad
+un├¡voca, derivando en una gesti├│n de seguridad netamente reactiva que impide identificar e
+interceptar accesos no autorizados en tiempo real.
+Ante esta ineficacia, la biometr├¡a se consolida como una soluci├│n estrat├®gica para crear
+credenciales irremplazables basadas en caracter├¡sticas fisiol├│gicas ├║nicas, dotando a las
+organizaciones de una protecci├│n significativamente m├ís robusta (Quir├│s V├¡quez et al., 2022).
+Sin embargo, los sistemas biom├®tricos b├ísicos introducen un nuevo vector de riesgo: la
+suplantaci├│n de identidad o spoofing f├¡sico mediante fotograf├¡as o pantallas. Por lo tanto, el
+problema central radica en la vulnerabilidad dual de los m├®todos f├¡sicos obsoletos y las
+biometr├¡as no aseguradas. Esto genera la necesidad imperativa de dise├▒ar una soluci├│n integral
+basada en Internet de las Cosas y Edge Computing que garantice una validaci├│n inequ├¡voca
+mediante visi├│n artificial y detecci├│n de vida, asegurando un ecosistema auditable, en tiempo
+real y resiliente frente a fallas de red.
+4. SOLUCI├ôN PROPUESTA
+Para mitigar las vulnerabilidades de los sistemas de acceso basados en credenciales f├¡sicas y la
+limitada trazabilidad en tiempo real, se propone un Sistema de Control de Acceso Inteligente con
+Visi├│n Biom├®trica. La soluci├│n se basa en una arquitectura distribuida bajo principios de Edge
+Computing e IoT, enfocada en validar la identidad humana mediante biometr├¡a.
+- Captura Inteligente y Resiliente en el Borde
+El nodo de acceso utiliza sensores de proximidad y una c├ímara integrada en un
+ESP32-CAM para capturar informaci├│n biom├®trica. Adem├ís, cuenta con
+capacidades de autogesti├│n y funcionamiento local ante fallos de conectividad
+mediante el patr├│n Store and Forward.
+- Motor de Validaci├│n Biom├®trica Centralizada
+La validaci├│n se realiza en una unidad central mediante un motor de
+Inteligencia Artificial con reconocimiento facial y detecci├│n de vida,
+permitiendo identificar intentos de spoofing y reforzar la seguridad del sistema.
+- Gesti├│n Transaccional e Infraestructura de Auditor├¡a
+El sistema emplea HTTP REST y MQTT para garantizar una comunicaci├│n
+r├ípida y eficiente. Los eventos se almacenan en una base de datos relacional,
+permitiendo auditor├¡a y monitoreo centralizado mediante una interfaz
+administrativa.
+
+=== PAGINA 5 ===
+5. OBJETIVOS
+5.1. OBJETIVOS GENERALES:
+Desarrollar un sistema de control de acceso inteligente basado en principios de IoT y
+Computaci├│n perimetral que garantice una validaci├│n biom├®trica un├¡voca, resiliencia
+operativa ante fallos de conectividad y trazabilidad auditable en tiempo real.
+5.2. OBJETIVOS ESPEC├ìFICOS:
+ÔÇó Implementar un nodo de captura aut├│nomo utilizando ESP32-S3 y sensores ToF
+para la detecci├│n y adquisici├│n de datos biom├®tricos con eficiencia energ├®tica.
+ÔÇó Dise├▒ar un motor de inferencia centralizado con capacidades de detecci├│n de
+vivacidad para mitigar riesgos de suplantaci├│n f├¡sica.
+ÔÇó Establecer una infraestructura de red resiliente mediante protocolos cifrados,
+HTTPS/MQTTS, y estrategias de almacenamiento y reenv├¡o para asegurar la
+integridad de los datos de auditor├¡a.
+ÔÇó Desarrollar una capa de aplicaci├│n para el monitoreo, gesti├│n y administraci├│n
+remota del sistema, permitiendo la toma de decisiones basada en m├®tricas de
+acceso.
+6. ARQUITECTURA POR CAPAS
+6.1. CAPA DE DISPOSITIVO:
+La Capa de Dispositivo implementa un sistema auton├│mico IoT con cuatro propiedades
+fundamentales que garantizan su operaci├│n continua y segura:
+Propiedad Auton├│mica Descripci├│n Componentes Clave
+Operaci├│n aut├│noma ante Watchdog Timer, MicroSD,
+p├®rdida de conectividad. El RFID/Teclado local
+Autocuraci├│n nodo asume control local
+mediante modo
+OFFLINE_EMERGENCY.
+Registro autom├ítico de mDNS, HTTP POST, JWT,
+nuevos nodos en menos de 1 Bluetooth
+Autoconfiguraci├│n
+minuto sin intervenci├│n
+manual.
+Ajuste din├ímico de Deep Sleep, LED din├ímico,
+consumo energ├®tico, monitor de telemetr├¡a
+Autooptimizaci├│n iluminaci├│n y compresi├│n
+de imagen seg├║n
+condiciones del entorno.
+Detecci├│n y neutralizaci├│n Liveness Detection,
+Autoprotecci├│n aut├│noma de amenazas TLS/HTTPS, Firewall
+f├¡sicas y cibern├®ticas. din├ímico
+6.1.1. SELECCI├ôN DE COMPONENTES
+
+=== PAGINA 6 ===
+El proceso de selecci├│n evalu├│ m├║ltiples alternativas para cada categor├¡a de componente.
+A continuaci├│n, se presentan las tablas comparativas con sus ventajas, desventajas y
+criterios de decisi├│n.
+6.1.1.1. UNIDAD DE CONTROL (MICROCONTROLADOR)
+La unidad de control constituye el cerebro del nodo biom├®trico. Debe equilibrar
+capacidad de procesamiento para inferencia de IA ligera, bajo consumo energ├®tico
+en modo Deep Sleep, integraci├│n de c├ímara y soporte de cifrado TLS/HTTPS en
+hardware.
+Principio de
+Dispositivo Ventajas Principales Desventajas
+Funcionamiento
+Consumo energ├®tico
+Microcontrolador doble Potencia insuficiente
+muy bajo, econ├│mico,
+n├║cleo a 240 MHz que act├║a para extracci├│n de
+ESP32-CAM integra conectividad
+como cerebro f├¡sico en el vectores faciales in situ y
+(Tradicional) Wi-Fi/Bluetooth y
+borde para empaquetar y gesti├│n simult├ínea de
+c├ímara en un ├║nico
+transmitir im├ígenes. cifrado TLS/HTTPS.
+m├│dulo compacto.
+Equilibrio ideal:
+Microcontrolador avanzado Ligeramente m├ís
+mantiene bajo
+con instrucciones costoso que la ESP32
+consumo, pero posee
+ESP32-S3 (XIAO vectoriales de hardware cl├ísica. Requiere uso de
+potencia para
+Sense) (ESP-NN) dise├▒adas para librer├¡as de IA
+inferencia b├ísica y
+acelerar algoritmos de IA en espec├¡ficas del
+manejo fluido de
+el borde. fabricante (ESP-NN).
+TLS/HTTPS.
+Microprocesador ARM Consumo energ├®tico
+Excelente capacidad
+multin├║cleo de mayor notablemente mayor.
+de procesamiento,
+Raspberry Pi capacidad para extracci├│n Costo elevado para un
+ideal para extracci├│n
+(Zero / 4B) de vectores faciales y nodo de borde. M├ís
+de embeddings en el
+procesamiento local adecuado para el
+borde.
+complejo. servidor central.
+Justificaci├│n de la elecci├│n: ESP32-S3 (XIAO Sense)
+El ESP32-S3 en formato XIAO Sense representa el punto de equilibrio ├│ptimo para
+los requerimientos del nodo biom├®trico. Sus instrucciones vectoriales ESP-NN
+permiten ejecutar inferencia b├ísica de liveness detection directamente en el borde,
+reduciendo la latencia de respuesta. Al mismo tiempo, su consumo en Deep Sleep es
+comparable al ESP32 cl├ísico, lo que posibilita la activaci├│n por sensor para
+maximizar la eficiencia energ├®tica. El soporte nativo de TLS/HTTPS en hardware
+garantiza la seguridad del canal de transmisi├│n de datos biom├®tricos sin degradar el
+rendimiento.
+6.1.1.2. SENSOR DE PROXIMIDAD
+El sensor de proximidad es el detonador del flujo de autenticaci├│n. Su funci├│n es
+detectar la proximidad de una persona para activar el microcontrolador desde el
+modo Deep Sleep y activar la c├ímara. Los criterios clave son precisi├│n, inmunidad a
+condiciones ambientales y tama├▒o compacto para integraci├│n en el chasis.
+Principio de
+Dispositivo Ventajas Principales Desventajas
+Funcionamiento
+
+=== PAGINA 7 ===
+Detecta variaciones de calor Muy econ├│mico, Produce falsos positivos
+corporal emitidas por ampliamente con fuentes de calor (luz
+Sensor PIR
+personas en movimiento. disponible, bajo solar directa, equipos
+(Pasivo
+Pasivo (no emite se├▒al), consumo, eficaz para el├®ctricos). Rango
+Infrarrojo)
+reacciona a cambios de detectar movimiento angular limitado y no
+temperatura. humano en interiores. mide distancia.
+Econ├│mico, mide Susceptible a
+Emite pulsos de sonido de
+distancia precisa, interferencias por
+Sensor alta frecuencia y mide el
+funciona superficies blandas o
+Ultras├│nico (HC- tiempo de rebote para
+independientemente irregulares. Sensible a
+SR04) calcular la distancia al
+de la temperatura del condiciones de ruido
+objeto.
+objeto. ambiental.
+Extremadamente
+Emite pulsos de luz preciso, muy r├ípido,
+Mayor costo que PIR o
+infrarroja (l├íser invisible) y tama├▒o compacto (f├ícil
+ToF VL53L0X ultras├│nico. Alcance
+mide el tiempo de vuelo de de ocultar en el
+(L├íser) m├íximo de ~2 m en
+los fotones al rebotar en el chasis), no afectado
+condiciones est├índar.
+objeto. por la luz ambiental ni
+el color de la ropa.
+Justificaci├│n de la elecci├│n: Sensor ToF VL53L0X
+El sensor ToF VL53L0X fue seleccionado por su inmunidad a la luz ambiental y al
+color de la vestimenta, variables que afectan significativamente el rendimiento de los
+sensores PIR y ultras├│nicos en entornos de acceso reales. Su respuesta de alta
+velocidad permite activar el ESP32-S3 desde Deep Sleep con m├¡nima latencia,
+optimizando el consumo energ├®tico general del nodo. Su formato compacto facilita
+la integraci├│n discreta en el chasis del prototipo.
+6.1.1.3. MECANISMO DE CIERRE
+El mecanismo de cierre es el actuador final del sistema: recibe la se├▒al del
+microcontrolador tras la validaci├│n biom├®trica y ejecuta la apertura o cierre f├¡sico
+del acceso. Para el prototipo se priorizan facilidad de integraci├│n, costo y
+adecuaci├│n al tama├▒o de la maqueta.
+Principio de
+Dispositivo Ventajas Principales Desventajas
+Funcionamiento
+Motor DC con engranajes Extremadamente
+Nivel de seguridad f├¡sica
+que gira su eje a un ├íngulo econ├│mico y
+Micro nulo para producci├│n.
+espec├¡fico al recibir una compacto. Muy f├ícil de
+Servomotor Sus engranajes de
+se├▒al PWM, simulando integrar en prototipos
+SG90 pl├ístico se rompen si se
+f├¡sicamente la apertura de r├ípidos sin circuiter├¡a
+fuerzan manualmente.
+un pestillo. adicional de potencia.
+Econ├│mica, compacta
+Un electroim├ín interno Poca resistencia a la
+Cerradura de y proporciona sonido
+retrae un pasador met├ílico fuerza bruta. Si la puerta
+Solenoide de apertura realista.
+cuando recibe corriente, ejerce presi├│n sobre el
+(Pestillo Generalmente Fail-
+liberando mec├ínicamente la pasador, el mecanismo
+El├®ctrico) Secure (cerrada sin
+apertura de la puerta. puede atascarse.
+corriente).
+Resistencia f├¡sica Mayor costo, pesada
+Genera un campo
+extrema para uso para maquetas
+Cerradura magn├®tico muy potente (60
+corporativo. Sin partes peque├▒as y requiere
+Electromagn├®tica kg a 280 kg de fuerza) que
+m├│viles, no se atasca. energ├¡a el├®ctrica
+(Magnetic Latch) se adhiere a una placa
+Fail-Safe ante cortes constante para
+met├ílica en el marco.
+de luz. mantenerse bloqueada.
+
+=== PAGINA 8 ===
+Justificaci├│n de la elecci├│n: Micro Servomotor SG90
+Para el prototipo acad├®mico, el Servomotor SG90 representa la opci├│n id├│nea. Su control
+directo mediante se├▒al PWM desde el ESP32-S3 no requiere circuiter├¡a adicional de
+potencia, simplificando el dise├▒o. Su formato compacto y bajo costo son coherentes con
+las necesidades de una maqueta demostrativa. Se reconoce que en una implementaci├│n
+de producci├│n real ser├¡a sustituido por una cerradura electromagn├®tica de alta resistencia.
+6.1.2. COMPONENTES DE INTEGRACI├ôN Y SOPORTE
+Adem├ís de los componentes principales, el nodo biom├®trico requiere elementos
+auxiliares que garantizan la alimentaci├│n estable, la interconexi├│n y la estructura f├¡sica
+del prototipo.
+Componente Funci├│n en la
+Especificaci├│n T├®cnica Justificaci├│n T├®cnica
+Auxiliar Arquitectura
+El sistema consume
+m├íx. ~0.8 A en pico.
+Energizar el ESP32- Una fuente de 2 A brinda
+Fuente de Cargador de pared USB (5
+S3, el sensor ToF y el margen de seguridad
+Alimentaci├│n V ÔÇô 2 A)
+servomotor. amplio, evitando
+reinicios por
+insuficiencia energ├®tica.
+Soporta los 2 A
+necesarios y permite la
+Alimentar el circuito y
+Cable de Datos y USB Tipo A a USB Tipo C transmisi├│n serial
+cargar el firmware
+Energ├¡a (con soporte de datos) indispensable para
+desde la PC.
+programar la placa
+XIAO.
+Permite ensamblar y
+Bus de interconexi├│n probar el prototipo
+Protoboard 400 puntos de contacto temporal para los r├ípidamente sin
+componentes. necesidad de dise├▒ar o
+soldar una placa PCB.
+Soportan el bajo
+amperaje de los
+Transmitir se├▒ales
+Cables de Jumpers Dupont (Macho- sensores y brindan
+(I2C, PWM) y voltaje
+Interconexi├│n Macho y Macho-Hembra) flexibilidad para ubicar
+entre componentes.
+las piezas en la
+maqueta.
+El SG90 tiene bajo
+Simular la puerta y torque (~1.2 kg-cm), por
+Estructura F├¡sica Cart├│n maquetero o piezas
+alojar la electr├│nica del lo que la puerta debe ser
+(Chasis) impresas en 3D (PLA)
+nodo. de material ligero para
+no forzar el mecanismo.
+6.1.3. RESUMEN DE COMPONENTES SELECCIONADOS
+La siguiente tabla consolida la selecci├│n final de componentes para la Capa de
+Dispositivo:
+Categor├¡a Componente Elegido Criterio Determinante
+Equilibrio entre capacidad
+de inferencia IA, bajo
+Microcontrolador ESP32-S3 (XIAO Sense) consumo en Deep Sleep y
+soporte nativo de
+TLS/HTTPS.
+
+=== PAGINA 9 ===
+Inmunidad a luz ambiental y
+color de ropa, alta velocidad
+Sensor de presencia ToF VL53L0X
+de respuesta y tama├▒o
+compacto.
+Integraci├│n directa por PWM
+sin circuiter├¡a extra, bajo
+Mecanismo de cierre Micro Servomotor SG90
+costo y adecuado para
+prototipo acad├®mico.
+Margen de seguridad del
+150% sobre el consumo
+Alimentaci├│n Cargador USB 5 V / 2 A
+pico estimado de 0.8 A del
+sistema.
+Prototipado r├ípido sin
+Protoboard + Jumpers soldadura, flexible para
+Interconexi├│n
+Dupont reconfiguraci├│n durante el
+desarrollo.
+6.1.4. FLUJO OPERATIVO DEL NODO BIOM├ëTRICO
+El flujo de operaci├│n de la Capa de Dispositivo sigue la siguiente secuencia de eventos:
+Paso Acci├│n Componente Responsable Detalle T├®cnico
+Detecta presencia a Ôëñ 1.5 m
+Detecci├│n de
+1 Sensor ToF VL53L0X y env├¡a se├▒al de
+presencia
+interrupci├│n al ESP32-S3.
+Microcontrolador sale del
+Activaci├│n desde modo de ultra bajo consumo
+2 ESP32-S3 (XIAO Sense)
+Deep Sleep en respuesta a la
+interrupci├│n.
+Captura un frame facial y lo
+C├ímara integrada ESP32-
+3 Captura facial comprime en formato JPEG
+S3
+(20ÔÇô80 KB).
+Env├¡a la imagen v├¡a HTTP
+Transmisi├│n al
+4 ESP32-S3 + Wi-Fi POST /api/v1/recognize
+servidor
+sobre HTTPS cifrado (TLS).
+Recibe el comando GRANT
+Recepci├│n de o DENY publicado por el
+5 ESP32-S3 + MQTT
+decisi├│n servidor en el topic MQTT
+correspondiente.
+Activa el servo para simular
+apertura del pestillo ante
+6 Actuaci├│n Servomotor SG90
+GRANT. Mantiene posici├│n
+ante DENY.
+Almacena el log del evento
+Registro local y en MicroSD y publica
+7 ESP32-S3 + MicroSD
+confirmaci├│n confirmaci├│n al servidor v├¡a
+MQTT.
+6.2. CAPA DE RED:
+Garantiza conectividad segura mediante Wi-Fi o Ethernet, empleando protocolos HTTP y
+MQTT para transmisi├│n cifrada, control remoto y respuesta en tiempo real.
+6.2.1. PROTOCOLOS DE COMUNICACI├ôN:
+o HTTP REST
+Ôû¬ Usado para transmisi├│n de im├ígenes (POST /recognize)
+
+=== PAGINA 10 ===
+Ôû¬ Modelo request-response sincr├│nico
+Ôû¬ Payload: imagen JPEG comprimida + metadata del nodo
+Ôû¬ TLS sobre HTTPS garantiza confidencialidad en tr├ínsito
+o MQTT
+Ôû¬ Usado para transmisi├│n de im├ígenes (POST /recognize)
+Ôû¬ Modelo request-response sincr├│nico
+Ôû¬ Payload: imagen JPEG comprimida + metadata del nodo
+Ôû¬ TLS sobre HTTPS garantiza confidencialidad en tr├ínsito
+o ┬┐Por qu├® ambos?
+Ôû¬ HTTP REST ÔåÆ canal pesado pero confiable para datos grandes
+(imagen)
+Ôû¬ MQTT ÔåÆ canal ligero y reactivo para se├▒ales de control
+(abrir/cerrar/alerta)
+6.2.2. FLUJO DE COMUNICACI├ôN DEL SISTEMA:
+o Detecci├│n: Sensor ToF detecta presencia Ôëñ 1.5 m ÔåÆ activa ESP32-S3
+desde Deep Sleep
+o Captura: C├ímara captura frame facial ÔåÆ ESP32 comprime JPEG (20ÔÇô
+80 KB)
+o Transmisi├│n HTTP: POST /api/v1/recognize v├¡a HTTPS al servidor
+(PC local)
+o Procesamiento IA: PC ejecuta Liveness Detection + comparaci├│n de
+embeddings en BD
+o Decisi├│n: Servidor publica resultado en topic MQTT
+acceso/puerta/{id}/comando con payload GRANT o DENY
+o Actuaci├│n: ESP32 recibe comando ÔåÆ activa Servo SG90 ÔåÆ log en
+MicroSD
+o Confirmaci├│n: ESP32 publica confirmaci├│n ÔåÆ PC actualiza BD y env├¡a
+notificaci├│n
+6.2.3. CASOS DE USO DE COMUNICACI├ôN:
+Caso Protocolo Activo Resultado
+Acceso autorizado HTTP POST ÔåÆ MQTT Puerta abre, log registrado
+GRANT
+Intento sospechoso HTTP POSTÔåÆ MQTT Puerta bloqueada, alerta
+DENY + ALERT Push/Email
+Nodo sin conectividad Watchdog detecta timeout Modo
+MQTT OFFLINE_EMERGENCY:
+TFID/teclado local
+6.2.4. TIPO DE RED Y CONECTIVIDAD:
+El sistema de control de acceso inteligente utiliza principalmente una red Wi-Fi para
+la comunicaci├│n entre los dispositivos IoT y el servidor central. Esta tecnolog├¡a
+permite transmitir datos biom├®tricos en tiempo real, facilitando la autenticaci├│n
+r├ípida y el monitoreo remoto del sistema.
+Adem├ís, se considera el uso de:
+
+=== PAGINA 11 ===
+o Bluetooth: utilizado para la configuraci├│n inicial y emparejamiento de
+dispositivos.
+o Ethernet (opcional): empleado en casos donde se requiere mayor
+estabilidad y velocidad de conexi├│n.
+o La conectividad entre dispositivos permite que componentes como la
+ESP32-CAM, sensores y el servidor trabajen de manera integrada dentro
+de la arquitectura IoT.
+6.2.5. TOPOLOG├ìA DE RED:
+El sistema utiliza una arquitectura cliente-servidor, donde los dispositivos IoT
+act├║an como clientes que env├¡an informaci├│n al servidor central.
+Componentes principales:
+o ESP32-CAM: captura im├ígenes faciales y datos del usuario.
+o Router Wi-Fi: permite la comunicaci├│n entre dispositivos.
+o Servidor: procesa la informaci├│n biom├®trica y administra el sistema.
+o Base de datos: almacena registros de acceso e informaci├│n de usuarios.
+o Aplicaci├│n web: permite el monitoreo y administraci├│n remota.
+6.2.6. DIAGRAMA DE ARQUITECTURA DE RED:
+La arquitectura de red est├í compuesta por distintos elementos interconectados que permiten el
+funcionamiento del sistema IoT.
+o Componentes:
+Ôû¬ Sensores y ESP32-CAM
+Ôû¬ Red Wi-Fi
+Ôû¬ Router
+Ôû¬ Raspberry Pi o servidor
+Ôû¬ Broker MQTT
+Ôû¬ Base de datos
+Ôû¬ Dashboard o Aplicaci├│n Web
+o Funcionamiento:
+
+=== PAGINA 12 ===
+Ôû¬ La ESP32-CAM detecta y captura el resotro.
+Ôû¬ La informaci├│n se transmite mediante Wi-Fi.
+Ôû¬ El servidor procesa los datos biom├®tricos.
+Ôû¬ El sistema valida la identidad.
+Ôû¬ Se registra el acceso en la base de datos.
+Ôû¬ La aplicaci├│n web muestra el estado y registros en tiempo real.
+6.2.7. ESCALABILIDAD DEL SISTEMA:
+El sistema fue dise├▒ado con una arquitectura escalable, permitiendo integrar nuevos dispositivos
+IoT sin afectar el funcionamiento general.
+o Caracter├¡sticas:
+Ôû¬ Integraci├│n de nuevos nodos f├ícilmente.
+Ôû¬ Detecci├│n autom├ítica de dispositivos.
+Ôû¬ Configuraci├│n din├ímica mediante red.
+Ôû¬ Posibilidad de actualizaci├│n remota.
+Ôû¬ Expansi├│n a m├║ltiples accesos o sedes.
+Gracias a esta escalabilidad, el sistema puede crecer seg├║n las necesidades de seguridad y
+control de acceso de la organizaci├│n.
+6.2.8. SEGURIDAD EN LA CAPA DE RED:
+Cifrado de Extremo a Extremo: Implementaci├│n estricta de protocolos
+TLS/HTTPS para el env├¡o de im├ígenes pesadas v├¡a HTTP REST, e encriptaci├│n
+TLS, MQTTS, para los comandos de actuaci├│n de la cerradura.
+
+=== PAGINA 13 ===
+Autenticaci├│n de Nodos: Uso de JWT, JSON Web Tokens, con rotaci├│n
+din├ímica para verificar la identidad de cada ESP32-CAM antes de permitirle
+publicar o suscribirse al Broker MQTT.
+Mitigaci├│n de Amenazas de Red: La segmentaci├│n y el t├║nel cifrado previenen
+vulnerabilidades cr├¡ticas del IoT, como ataques Man-in-the-Middle y Sniffing,
+garantizando que el vector biom├®trico sea ilegible si se intercepta el tr├ífico Wi-
+Fi.
+6.2.9. CALIDAD Y SERVICIO Y FIABILIDAD:
+o Priorizaci├│n de comandos cr├¡ticos haciendo uso de QoS 1 o QoS 2 para
+garantizar la entrega confiable de comandos cr├¡ticos al ESP32.
+o Retransmisi├│n segura realizando el Reenv├¡o autom├ítico de ├│rdenes ante
+fallos o micro-cortes de red.
+o Autenticaci├│n de Nodos haciendo la Implementaci├│n de JWT con
+rotaci├│n din├ímica para validar cada ESP32-CAM.
+o Control de acceso, solo los dispositivos autenticados pueden
+comunicarse con el Broker MQTT.
+o Seguridad de red con la Segmentaci├│n y cifrado para prevenir ataques
+como Man-in-the-Middle y Sniffing.
+6.2.10. MIDDLEWARE Y PROCESAMIENTO CENTRALIZADO:
+o Orquestaci├│n y L├│gica de Negocio, el middleware centraliza la l├│gica de
+negocio y funciona como el intermediario inteligente entre la
+infraestructura de transmisi├│n y los servicios finales.
+o Inferencia Biom├®trica Centralizada, aloja el motor de Inteligencia
+Artificial encargado de ejecutar el reconocimiento facial y los algoritmos
+de detecci├│n de vida, Liveness Detection, Anti-Spoofing.
+o Persistencia Segura de Datos, se encarga de gestionar de forma eficiente
+la conexi├│n con bases de datos oracle para almacenar de manera segura
+los registros de acceso, logs inmutables y las im├ígenes de evidencia.
+6.2.11. VALIDACI├ôN, PRUEBAS Y M├ëTRICAS DE
+RENDIMIENTO:
+o Precisi├│n Biom├®trica, evaluaci├│n de FAR y FRR para optimizar
+seguridad y experiencia del usuario leg├¡timo.
+o Seguridad Anti-Spoofing, validaci├│n mediante pruebas de ataques f├¡sicos
+simulados y verificaci├│n de protecci├│n criptogr├ífica TLS.
+o Rendimiento de red, evaluaci├│n de latencia asegurando tiempos de
+respuesta sostenidos inferiores a 500 ms bajo diferentes condiciones de
+carga de red Wi-Fi.
+o Resiliencia operativa, pruebas de fallos controlados para certificar
+continuidad local segura y preservaci├│n de registros.
+6.3. CAPA DE APOYO A SERVICIOS:
+6.3.1. MOTOR DE INTELIGENCIA ARTIFICIAL CENTRALIZADO
+
+=== PAGINA 14 ===
+6.3.1.1. SELECCI├ôN DEL FRAMEWORK DE INFERENCIA
+6.3.1.2. PIPELINE DE PROCESAMIENTO
+6.3.1.3. M├ëTRICAS DE RENDIMIENTO DE MOTOR
+6.3.2. RED NEURONAL ÔÇô MODELO DE RECONOCIMIENTO FACIAL
+6.3.2.1. SELECCI├ôN DEL MODELO
+6.3.2.2. ARQUITECTURA DE LA RED NEURONAL
+6.3.2.3. ENTRENAMIENTO Y DATASET
+6.3.2.4. LIVENESS DETECTION / ANTI-SPOOFING
+6.3.2.5. M├ëTRICAS DE EVALUACI├ôN DEL MODELO
+6.3.3. L├ôGICA DE NEGOCIO Y GESTI├ôN DE REGLAS DE ACCESO
+La L├│gica de Negocio constituye el n├║cleo decisional del Sistema de Control de Acceso
+Inteligente. Opera en la Capa de Apoyo a Servicios como intermediaria entre el Motor de
+Inteligencia Artificial ÔÇöque entrega los resultados de inferencia biom├®tricaÔÇö y la Capa
+de Aplicaci├│n, que gestiona la interfaz administrativa y el registro de eventos. Su
+responsabilidad es traducir los resultados probabil├¡sticos del modelo de reconocimiento
+facial en decisiones binarias (GRANT / DENY) aplicando un conjunto estructurado de
+reglas de negocio, umbrales de seguridad y pol├¡ticas de acceso configurables.
+A diferencia de una simple comparaci├│n de similitud, la l├│gica de negocio incorpora
+dimensiones adicionales que elevan la robustez del sistema: validaci├│n temporal de
+horarios de acceso permitidos, an├ílisis de patrones de comportamiento an├│malo, gesti├│n
+de estados de sesi├│n por nodo, y activaci├│n de protocolos de contingencia ante fallos de
+infraestructura. Estas capas de decisi├│n garantizan que el sistema opere de forma segura
+tanto en condiciones normales como ante escenarios adversos previstos.
+6.3.3.1. REGLAS DE DECISI├ôN
+El flujo de decisi├│n se estructura como una cadena de validaciones secuenciales.
+Cada verificaci├│n act├║a como filtro: si una condici├│n no se cumple, el proceso
+termina inmediatamente con una respuesta DENY sin necesidad de evaluar las
+siguientes etapas. Este dise├▒o de fallo temprano (fail-fast) minimiza el tiempo de
+respuesta ante intentos no autorizados y reduce la carga computacional del servidor.
+Paso Acci├│n Componente Responsable Detalle T├®cnico
+DENY inmediato + alerta de tipo
+Liveness Detection
+1 Score de vivacidad ÔëÑ 0.85 SPOOFING_ATTEMPT. El frame
+(Anti-Spoofing)
+no se procesa con el modelo facial.
+DENY + log de tipo
+Detecci├│n de rostro Confianza de detecci├│n ÔëÑ NO_FACE_DETECTED. Puede
+2
+en frame 0.90 indicar obstrucci├│n deliberada o
+condiciones de iluminaci├│n adversas.
+DENY + log de tipo
+Resoluci├│n m├¡nima 96├ù96
+Calidad del frame LOW_QUALITY_FRAME. El
+3 px, nitidez ÔëÑ umbral
+biom├®trico ESP32-S3 reintenta captura hasta 3
+Laplaciano
+veces.
+DENY + log de tipo
+Distancia coseno Ôëñ 0.40
+Similitud facial con IDENTITY_MISMATCH. Se
+4 (equivalente a similitud ÔëÑ
+identidad registrada registra el embedding del intento
+0.82)
+fallido.
+Timestamp UTC dentro del DENY + log de tipo
+Validaci├│n de
+5 rango horario asignado al ACCESS_OUT_OF_SCHEDULE.
+horario permitido
+usuario No implica identidad no reconocida.
+
+=== PAGINA 15 ===
+Estado en BD = ACTIVO DENY + log de tipo
+Validaci├│n de estado
+6 (no bloqueado, no USER_INACTIVE. Notificaci├│n
+del usuario
+suspendido) inmediata al administrador.
+DENY + log de tipo
+Intervalo m├¡nimo de 3 s
+Cooldown entre RATE_LIMIT_EXCEEDED.
+7 entre accesos del mismo
+intentos Previene ataques de repetici├│n de
+usuario
+frames.
+Todas las GRANT: se publica en topic MQTT
+Todos los umbrales
+8 validaciones acceso/puerta/{id}/comando con
+cumplidos en secuencia
+superadas payload GRANT + token de sesi├│n.
+Los umbrales definidos en la Tabla 8 fueron calibrados considerando el balance entre
+tasa de falsa aceptaci├│n (FAR) y tasa de falso rechazo (FRR). Un umbral de similitud
+facial de 0.82 posiciona el sistema en un punto de operaci├│n que minimiza la FAR
+(riesgo de seguridad) sacrificando marginalmente la FRR (fricci├│n de usuario), lo que
+es coherente con las prioridades de un sistema de control de acceso f├¡sico.
+6.3.3.2. GESTI├ôN DE EXCEPCIONES Y ALERTAS
+El sistema clasifica los eventos de seguridad en tres niveles de severidad, cada uno
+con un protocolo de respuesta diferenciado. Esta taxonom├¡a permite al administrador
+filtrar el ruido operativo y concentrar la atenci├│n en eventos de alto riesgo, al tiempo
+que mantiene un registro exhaustivo de toda actividad para fines de auditor├¡a.
+Componente
+Paso Acci├│n Detalle T├®cnico
+Responsable
+Bloqueo temporal del
+nodo (60 s). Notificaci├│n
+push inmediata al
+Liveness score <
+CR├ìTICO SPOOFING_ATTEMPT administrador. Captura y
+0.85 en 1 intento
+almacenamiento del
+frame como evidencia en
+BD.
+Bloqueo del nodo por 300
+ÔëÑ 5 intentos DENY
+s. Alerta de seguridad
+consecutivos en <
+CR├ìTICO BRUTE_FORCE_DETECTED nivel 1. Log con historial
+120 s desde el
+completo de intentos y
+mismo nodo
+embeddings capturados.
+DENY sin bloqueo.
+Almacenamiento del
+Similitud < 0.82 con
+embedding del intento.
+ALTO IDENTITY_MISMATCH cualquier perfil
+Notificaci├│n diferida
+registrado
+(resumen cada 15 min si
+hay m├ís de 3 eventos).
+DENY + notificaci├│n
+Identidad
+inmediata al
+reconocida pero
+ALTO ACCESS_OUT_OF_SCHEDULE administrador (puede
+fuera de horario
+indicar intento
+permitido
+planificado).
+Reintentos autom├íticos
+Frame bajo umbral (m├íx. 3). Si persiste,
+MEDIO LOW_QUALITY_FRAME de calidad DENY + log operativo.
+biom├®trica No genera alerta de
+seguridad.
+Usuario con estado
+DENY + notificaci├│n al
+BLOQUEADO o
+MEDIO USER_INACTIVE administrador del intento
+SUSPENDIDO en
+de un usuario bloqueado.
+BD
+
+=== PAGINA 16 ===
+DENY silencioso (solo
+Cooldown no
+log). Puede indicar doble
+BAJO RATE_LIMIT_EXCEEDED cumplido (< 3 s
+presentaci├│n involuntaria
+entre intentos)
+del mismo usuario.
+GRANT + log completo
+Todos los umbrales del evento con timestamp,
+INFO SUCCESSFUL_ACCESS
+superados ID de usuario, ID de nodo
+y score de similitud.
+Bloqueo temporal del
+nodo (60 s). Notificaci├│n
+push inmediata al
+Liveness score <
+CR├ìTICO SPOOFING_ATTEMPT administrador. Captura y
+0.85 en 1 intento
+almacenamiento del
+frame como evidencia en
+BD.
+Las notificaciones de nivel CR├ìTICO y ALTO se transmiten en tiempo real mediante
+dos canales complementarios: una publicaci├│n en el topic MQTT
+sistema/alertas/{severidad} que la Capa de Aplicaci├│n consume para actualizar el
+dashboard en tiempo real, y un correo electr├│nico o notificaci├│n push al
+administrador registrado. Los eventos de nivel MEDIO e INFO se consolidan en
+reportes peri├│dicos accesibles desde la consola de administraci├│n.
+Flujo de Escalamiento de Alertas
+El siguiente esquema describe el flujo de decisi├│n para la escalada de alertas desde
+la detecci├│n del evento hasta su resoluci├│n administrativa:
+Tiempo
+Fase Acci├│n del Sistema Responsable
+M├íximo
+El motor de decisi├│n clasifica
+M├│dulo de L├│gica
+Detecci├│n el evento y asigna nivel de < 50 ms
+de Negocio
+severidad.
+Escritura del evento en tabla
+M├│dulo de
+Registro logs_acceso con todos los < 100 ms
+Persistencia
+metadatos.
+Publicaci├│n MQTT en topic
+Publicaci├│n correspondiente al nivel de Broker MQTT < 200 ms
+severidad.
+Env├¡o de alerta push/email
+Servicio de
+Notificaci├│n para eventos CR├ìTICO y < 2 s
+Notificaciones
+ALTO.
+Actualizaci├│n del dashboard
+Interfaz Web
+Visualizaci├│n en tiempo real en la Capa de < 500 ms
+(Capa 4)
+Aplicaci├│n.
+El administrador marca el
+evento como revisado desde Administrador del
+Resoluci├│n Manual
+la consola. Se desbloquea el Sistema
+nodo si aplica.
+6.3.3.3. MODO OFFLINE_EMERGENCY (LADO SERVIDOR)
+El modo OFFLINE_EMERGENCY es el protocolo de contingencia que se activa
+cuando el sistema detecta la p├®rdida de conectividad entre uno o m├ís nodos ESP32-
+S3 y el servidor central. Este escenario puede originarse por fallas en el router Wi-Fi,
+cortes de red, reinicios del servidor o saturaci├│n del broker MQTT. Sin una estrategia
+
+=== PAGINA 17 ===
+de contingencia, estos eventos implicar├¡an la paralizaci├│n total del sistema de acceso,
+lo que resulta inaceptable en instalaciones de seguridad f├¡sica.
+El sistema implementa una arquitectura de contingencia en dos niveles que opera de
+forma coordinada entre el nodo (Capa 1) y el servidor (Capa 3), garantizando la
+continuidad operativa y la posterior sincronizaci├│n de registros al restablecer la
+conectividad.
+Detecci├│n de P├®rdida de Conectividad
+El servidor monitorea la actividad de cada nodo registrado mediante dos mecanismos
+complementarios:
+ÔÇó Heartbeat MQTT: cada nodo publica un mensaje peri├│dico cada 30
+segundos en el topic sistema/nodos/{id}/heartbeat. Si el servidor no recibe
+heartbeat durante 90 segundos (3 periodos consecutivos), clasifica el nodo
+como OFFLINE.
+ÔÇó Watchdog de respuesta HTTP: si el servidor no recibe confirmaci├│n del
+nodo tras publicar un comando GRANT o DENY en un intervalo de 5
+segundos, incrementa el contador de timeouts del nodo. Tres timeouts
+consecutivos activan el estado OFFLINE.
+Condici├│n de
+Estado del Nodo Acci├│n del Servidor
+Activaci├│n
+Operaci├│n normal.
+Heartbeat recibido en los Procesamiento de im├ígenes
+ONLINE
+├║ltimos 90 s y publicaci├│n de comandos
+MQTT.
+Incremento de prioridad en
+1-2 timeouts de heartbeat
+DEGRADADO reintentos MQTT (QoS 2).
+o respuesta HTTP
+Alerta INFO al administrador.
+Activaci├│n de modo
+3+ timeouts consecutivos OFFLINE_EMERGENCY en
+OFFLINE o ausencia de heartbeat > el nodo. Alerta ALTO al
+90 s administrador. Inicio de cola
+de sincronizaci├│n.
+Solicitud de sincronizaci├│n de
+logs almacenados en
+Recepci├│n de heartbeat
+RECONECTADO MicroSD del nodo.
+tras estado OFFLINE
+Restauraci├│n de modo
+normal.
+Protocolo de Contingencia del Servidor
+Cuando el servidor detecta un nodo en estado OFFLINE, ejecuta las siguientes acciones
+de forma aut├│noma, sin requerir intervenci├│n del administrador:
+Acci├│n Descripci├│n T├®cnica Objetivo
+El servidor genera un snapshot de los
+usuarios con acceso activo en ese
+Generaci├│n de nodo, serializado en JSON y firmado Dotar al nodo de credenciales
+lista blanca con HMAC-SHA256 usando la clave locales verificables sin
+cifrada compartida del nodo. Este paquete se conexi├│n permanente.
+almacena temporalmente en el servidor
+para su eventual transmisi├│n al nodo.
+Se inicializa una cola FIFO en el
+Garantizar integridad del log
+Apertura de cola servidor para el nodo OFFLINE. Todos
+de auditor├¡a sin p├®rdida de
+de sincronizaci├│n los eventos de acceso registrados
+registros.
+localmente en la MicroSD del nodo se
+
+=== PAGINA 18 ===
+encolar├ín para su ingesta en la BD
+central al reconectarse.
+Se publica en el topic
+sistema/alertas/ALTO un mensaje
+Visibilidad inmediata del
+Publicaci├│n de JSON con el ID del nodo, timestamp de
+administrador sobre el nodo
+alerta OFFLINE detecci├│n y estado OFFLINE. La Capa
+fuera de servicio.
+de Aplicaci├│n actualiza el indicador de
+estado del nodo en el dashboard.
+El servidor intenta publicar un mensaje
+Reintentos de ping en el topic del nodo cada 15 Detecci├│n autom├ítica del
+peri├│dicos de segundos. Si el nodo responde, se restablecimiento de
+reconexi├│n inicia el protocolo de reconexi├│n y conectividad.
+sincronizaci├│n.
+Proceso de Resincronizaci├│n Post-Reconexi├│n
+Al detectar que un nodo OFFLINE ha vuelto a estar disponible, el servidor ejecuta un
+protocolo de resincronizaci├│n ordenado que garantiza la consistencia de los datos sin
+duplicar registros:
+Paso Acci├│n Detalle T├®cnico
+El nodo publica en sistema/nodos/{id}/reconnect con
+1 Handshake de reconexi├│n timestamp de desconexi├│n, timestamp de reconexi├│n
+y cantidad de registros pendientes en MicroSD.
+El servidor solicita al nodo mediante HTTP GET
+2 Solicitud de logs pendientes /api/v1/sync/logs?from={timestamp_offline} la
+transmisi├│n de los registros almacenados localmente.
+El servidor valida la firma HMAC de cada registro
+recibido, descarta duplicados por ├¡ndice de secuencia
+3 Validaci├│n e ingesta
+y persiste los eventos en la tabla logs_acceso con flag
+sync_mode = TRUE.
+El servidor publica confirmaci├│n de sincronizaci├│n
+4 Confirmaci├│n y limpieza exitosa. El nodo elimina los registros ya sincronizados
+de la MicroSD para liberar espacio.
+El servidor actualiza el estado del nodo a ONLINE en
+Restauraci├│n de modo
+5 el registro de dispositivos y retoma el flujo operativo
+normal
+normal de procesamiento de im├ígenes.
+Este mecanismo de resincronizaci├│n garantiza que ning├║n evento de acceso se pierda
+durante una interrupci├│n de conectividad, lo que resulta fundamental para mantener la
+integridad del registro de auditor├¡a exigido en entornos de seguridad f├¡sica. El flag
+sync_mode = TRUE en los registros sincronizados permite distinguirlos de los registros
+procesados en tiempo real, facilitando an├ílisis forenses posteriores.
+6.3.4. PERSISTENCIA DE DATOS RELACIONALES
+6.3.4.1. SELECCI├ôN DEL MOTOR DE BASE DE DATOS
+6.3.4.2. DISE├æO DEL ESQUEMA DE TABLAS
+6.3.4.3. LOGS INMUTABLES E INTEGRIDAD DE DATOS
+6.3.4.4. POL├ìTICA DE RETENCI├ôN Y BACKUP
+6.4. CAPA DE APLICACI├ôN:
+Proporciona gesti├│n integral de usuarios, monitoreo centralizado, auditor├¡a de accesos, an├ílisis
+de m├®tricas y alertas inmediatas ante eventos sospechosos.
+
+=== PAGINA 19 ===
+Bibliograf├¡a
+1. Wr├│bel, K., Po┼éap, D., & W├│jcik, M. (2024). Reducing the power consumption of edge
+devices supporting ambient intelligence applications. Information, 15(3), 161.
+https://doi.org/10.3390/info15030161
+2. Belgibayev, B., Mansurova, M., Ablay, G., Sarsembayeva, T., & Armankyzy, Z. (2025).
+Optimization of neural network models of computer vision for biometric identification
+on edge IoT devices. Journal of Imaging, 11(11), 419.
+https://doi.org/10.3390/jimaging11110419
+3. Surantha, N., & Sugijakko, B. (2024). Lightweight face recognition-based portable
+attendance system with liveness detection. Internet of Things, 25, 101089.
+https://doi.org/10.1016/j.iot.2024.101089
+4. Papageorgiou, G., Kokkonis, G., & Kontogiannis, S. (2025). Comparative analysis and
+implementation of HTTP3, MQTT, and CoAP for IoT applications. Proceedings of the
+28th Pan-Hellenic Conference on Progress in Computing and Informatics.
+https://doi.org/10.1145/3716554.3716830
+5. Awad, A. I., Abdalla, M., & Hassanien, A. E. (2024). AI-powered biometrics for
+Internet of Things security: A review and future vision. Journal of Information
+Security and Applications, 82, 103748. https://doi.org/10.1016/j.jisa.2024.103748
+6. Leclerc, S., & K├ñrrstr├Âm, P. (2022). Cloning attacks against NFC-based access control
+systems. M├ñlardalen University. https://www.diva-
+portal.org/smash/record.jsf?pid=diva2%3A1671642&dswid=1480
+7. Quir├│s V├¡quez, P., G├│mez, A. F., & C├│rdoba Retana, J. (2022). Adopci├│n de biometr├¡a
+como mecanismo de autenticaci├│n en las empresas costarricenses. Universidad
+
+=== PAGINA 20 ===
+Latinoamericana de Ciencia y Tecnolog├¡a (ULACIT).
+https://repositorio.ulacit.ac.cr/handle/20.500.14230/10852

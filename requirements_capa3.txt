@@ -1,0 +1,13 @@
+torch>=2.2.0
+torchvision>=0.17.0
+facenet-pytorch>=2.5.3
+mediapipe>=0.10.0
+onnxruntime>=1.16.0
+opencv-python>=4.8.0
+scikit-learn>=1.3.0
+faiss-cpu>=1.7.4
+Pillow>=10.0.0
+numpy>=1.24.0
+paho-mqtt>=1.6.1
+flask>=3.0.0
+SQLAlchemy>=2.0.0
